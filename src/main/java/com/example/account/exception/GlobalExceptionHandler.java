@@ -4,6 +4,7 @@ import com.example.account.dto.ErrorResponse;
 import com.example.account.type.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -23,6 +24,14 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponse handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException e) {
+        log.error("MethodArgumentNotValidException is occured.", e);
+
+        return new ErrorResponse(ErrorCode.INVALID_NUMBER,
+                ErrorCode.INVALID_NUMBER.getDescription());
+    }
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ErrorResponse handleDataIntegrityViolationException(
             DataIntegrityViolationException e) {

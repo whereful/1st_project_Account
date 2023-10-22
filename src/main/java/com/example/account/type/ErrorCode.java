@@ -9,6 +9,7 @@ public enum ErrorCode {
 
     INTERNAL_SERVER_ERROR("내부 서버 오류가 발생하였습니다."),
     INVALID_REQUEST("잘못된 요청입니다."),
+    INVALID_NUMBER("잘못된 금액을 입력하였습니다."),
     USER_NOT_FOUND("사용자가 없습니다."),
     ACCOUNT_NOT_FOUND("계좌가 없습니다."),
     ACCOUNT_TRANSACTION_LOCK("해당 계좌는 사용중입니다."),
